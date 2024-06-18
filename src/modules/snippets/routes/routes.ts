@@ -17,4 +17,8 @@ export const routes: RoutesData = {
     path: "/:id",
     method: "DELETE",
   },
+  getSnippetsService: {
+    path: "/",
+    method: "GET",
+  },
 };
