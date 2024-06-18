@@ -29,4 +29,8 @@ export const routes: RoutesData = {
     method: "GET",
     path: "/verify",
   },
+  me: {
+    method: "GET",
+    path: "/me",
+  },
 };
