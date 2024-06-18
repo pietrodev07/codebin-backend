@@ -1,18 +1,14 @@
-import "dotenv/config";
 import { serve } from "@hono/node-server";
-import { Hono } from "hono";
-import { info } from "kittylog";
+import { bootstrapApplication } from "./shared/utils/bootstrap";
+import { success } from "kittylog";
 
-const app = new Hono();
+const app = bootstrapApplication();
 
-app.get("/", (c) => {
-  return c.text("Hello from backend!");
-});
-
-const port = 3000;
-info(`Server is running on port ${port}`);
-
-serve({
+const serverConfig = {
   fetch: app.fetch,
-  port,
+  port: 8000,
+};
+
+serve(serverConfig, ({ address, port }) => {
+  success(`Server running at <${address}> on the <${port}> port`);
 });
