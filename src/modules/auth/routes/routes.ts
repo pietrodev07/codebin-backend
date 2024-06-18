@@ -1,4 +1,5 @@
 import { RoutesData } from "../../../shared/types";
+import { forgotPasswordBodySchema } from "../schemas/forgot.schema";
 import { loginBodySchema } from "../schemas/login.schema";
 import { registerBodySchema } from "../schemas/register.schema";
 
@@ -12,6 +13,11 @@ export const routes: RoutesData = {
     method: "POST",
     path: "/login",
     validator: loginBodySchema,
+  },
+  forgotPassword: {
+    method: "POST",
+    path: "/forgot",
+    validator: forgotPasswordBodySchema,
   },
   verifyAccount: {
     method: "GET",
