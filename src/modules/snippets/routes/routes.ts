@@ -21,4 +21,8 @@ export const routes: RoutesData = {
     path: "/",
     method: "GET",
   },
+  getSnippetService: {
+    path: "/:id",
+    method: "GET",
+  },
 };
