@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.11.3",
+    "@hono/zod-validator": "^0.2.2",
+    "bcrypt": "^5.1.1",
+    "hono": "^4.4.6",
+    "kittylog": "^1.0.6",
+    "kysely": "^0.27.3",
+    "nodemailer": "^6.9.13",
+    "pg": "^8.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.14.5",
+    "@types/nodemailer": "^6.4.15",
+    "@types/pg": "^8.11.6",
+    "prettier": "^3.3.2",
+    "tsx": "^4.15.6"
+  }
+}
