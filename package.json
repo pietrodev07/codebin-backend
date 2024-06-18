@@ -1,7 +1,8 @@
 {
   "name": "backend",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "format": "prettier --end-of-line crlf . --write"
   },
   "dependencies": {
     "@hono/node-server": "^1.11.3",
