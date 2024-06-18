@@ -7,4 +7,8 @@ export const routes: RoutesData = {
     path: "/register",
     validator: registerBodySchema,
   },
+  verifyAccount: {
+    method: "GET",
+    path: "/verify",
+  },
 };
