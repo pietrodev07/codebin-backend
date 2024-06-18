@@ -7,6 +7,7 @@ export const bootstrapApplication = () => {
   const app = new Hono();
 
   app.use("/auth/me", authMiddleware);
+  app.use("/snippets", authMiddleware);
 
   app.route("/auth", authRoutes);
   app.route("/snippets", snippetsRoutes);
