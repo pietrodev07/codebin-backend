@@ -2,6 +2,7 @@ import { RoutesData } from "../../../shared/types";
 import { forgotPasswordBodySchema } from "../schemas/forgot.schema";
 import { loginBodySchema } from "../schemas/login.schema";
 import { registerBodySchema } from "../schemas/register.schema";
+import { resetPasswordBodySchema } from "../schemas/reset.schema";
 
 export const routes: RoutesData = {
   register: {
@@ -18,6 +19,11 @@ export const routes: RoutesData = {
     method: "POST",
     path: "/forgot",
     validator: forgotPasswordBodySchema,
+  },
+  resetPassword: {
+    method: "POST",
+    path: "/reset",
+    validator: resetPasswordBodySchema,
   },
   verifyAccount: {
     method: "GET",
