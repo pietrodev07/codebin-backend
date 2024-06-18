@@ -1,3 +1,5 @@
+export const migrationFolder = "./migrations";
+
 export const databaseConfig = {
   database: process.env.DATABASE_DB_NAME,
   host: process.env.DATABASE_HOST,
