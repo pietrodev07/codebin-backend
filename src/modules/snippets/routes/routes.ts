@@ -13,4 +13,8 @@ export const routes: RoutesData = {
     method: "PUT",
     validator: updateSnippetBodySchema,
   },
+  deleteSnippetService: {
+    path: "/:id",
+    method: "DELETE",
+  },
 };
