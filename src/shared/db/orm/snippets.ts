@@ -36,7 +36,8 @@ export const updateSnippet = async (
     .set(snippet)
     .where("userId", "=", userId)
     .where("id", "=", snippetId)
-    .execute();
+    .returningAll()
+    .executeTakeFirst();
 };
 
 export const deleteSnippet = async (userId: string, id: string) => {
