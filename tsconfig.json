@@ -8,7 +8,16 @@
     "types": ["node"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "paths": {
+      "@/auth/*": ["./src/modules/auth/*"],
+      "@/snippets/*": ["./src/modules/snippets/*"],
+      "@/utils/*": ["./src/shared/utils/*"],
+      "@/db/*": ["./src/shared/db/*"],
+      "@/middlewares/*": ["./src/shared/middlewares/*"],
+      "@/types/*": ["./src/shared/types/*"],
+      "@/config/*": ["./src/shared/config"]
+    }
   },
   "exclude": ["node_modules"]
 }
