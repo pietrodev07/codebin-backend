@@ -1,7 +1,7 @@
 import { Hono } from "hono";
-import { authRoutes } from "../../modules/auth/routes/auth.routes";
-import { authMiddleware } from "../middlewares/auth.middleware";
-import { snippetsRoutes } from "../../modules/snippets/routes/snippets.routes";
+import { authRoutes } from "@/auth/routes/auth.routes";
+import { authMiddleware } from "@/middlewares/auth.middleware";
+import { snippetsRoutes } from "@/snippets/routes/snippets.routes";
 
 export const bootstrapApplication = () => {
   const app = new Hono();

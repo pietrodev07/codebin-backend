@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { H } from "hono/types";
-import { RoutesData } from "../types";
-import { bodyValidator } from "../middlewares/validator.middleware";
+import { RoutesData } from "@/types/index";
+import { bodyValidator } from "@/middlewares/validator.middleware";
 
 export const generateRouter = <C extends Record<string, H>>(
   routes: RoutesData,

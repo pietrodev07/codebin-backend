@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getUserByUsername } from "../../../shared/db/orm/users";
+import { getUserByUsername } from "@/db/orm/users";
 
 export const me = async (c: Context) => {
   const { username } = c.get("user_data");

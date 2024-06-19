@@ -1,4 +1,4 @@
-import { RoutesData } from "../../../shared/types";
+import { RoutesData } from "@/types/index";
 import { createSnippetBodySchema } from "../schemas/create.schema";
 import { updateSnippetBodySchema } from "../schemas/update.schema";
 

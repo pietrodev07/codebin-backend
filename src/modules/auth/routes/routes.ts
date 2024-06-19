@@ -1,4 +1,4 @@
-import { RoutesData } from "../../../shared/types";
+import { RoutesData } from "@/types/index";
 import { forgotPasswordBodySchema } from "../schemas/forgot.schema";
 import { loginBodySchema } from "../schemas/login.schema";
 import { registerBodySchema } from "../schemas/register.schema";

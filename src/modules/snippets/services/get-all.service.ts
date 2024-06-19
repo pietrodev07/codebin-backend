@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getSnippets } from "../../../shared/db/orm/snippets";
+import { getSnippets } from "@/db/orm/snippets";
 
 export const getSnippetsService = async (c: Context) => {
   const user = c.get("user_data");

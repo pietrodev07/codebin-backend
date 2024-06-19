@@ -1,13 +1,13 @@
 import { Context } from "hono";
-import { hash } from "../../../shared/utils/bcrypt/hash";
-import { generateToken } from "../../../shared/utils/jwt/create";
+import { hash } from "@/utils/bcrypt/hash";
+import { generateToken } from "@/utils/jwt/create";
 import { RegisterBody } from "../schemas/register.schema";
 import {
   createUser,
   getUserByEmail,
   getUserByUsername,
   updateUser,
-} from "../../../shared/db/orm/users";
+} from "@/db/orm/users";
 
 export const register = async (c: Context) => {
   const { email, username, password } = await c.req.json<RegisterBody>();

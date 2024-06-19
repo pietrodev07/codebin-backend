@@ -1,7 +1,7 @@
 import { Context } from "hono";
 import { JwtTokenExpired, JwtTokenInvalid } from "hono/utils/jwt/types";
-import { verifyToken } from "../../../shared/utils/jwt/verify";
-import { getUserByEmail, updateUser } from "../../../shared/db/orm/users";
+import { verifyToken } from "@/utils/jwt/verify";
+import { getUserByEmail, updateUser } from "@/db/orm/users";
 
 export const verifyAccount = async (c: Context) => {
   const { email, token } = c.req.query();

@@ -1,9 +1,9 @@
 import "dotenv/config";
 
 import { serve } from "@hono/node-server";
-import { bootstrapApplication } from "./shared/utils/bootstrap";
+import { bootstrapApplication } from "@/utils/bootstrap";
 import { success } from "kittylog";
-import { migrateToLatest } from "./shared/db/migrate";
+import { migrateToLatest } from "@/db/migrate";
 
 const app = bootstrapApplication();
 

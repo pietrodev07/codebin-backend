@@ -2,7 +2,7 @@ import { Context, Next } from "hono";
 import { JwtTokenExpired, JwtTokenInvalid } from "hono/utils/jwt/types";
 import { getCookie } from "hono/cookie";
 import { verifyToken } from "../utils/jwt/verify";
-import { getUserByUsername } from "../db/orm/users";
+import { getUserByUsername } from "@/db/orm/users";
 
 export const authMiddleware = async (c: Context, next: Next) => {
   const token = getCookie(c, "access_token");

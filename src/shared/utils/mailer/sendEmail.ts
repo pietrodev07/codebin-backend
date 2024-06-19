@@ -1,4 +1,4 @@
-import { EmailOptions } from "../../types";
+import { EmailOptions } from "@/types/index";
 import { transporter } from "./transporter";
 
 export const sendEmail = async (options: EmailOptions) => {

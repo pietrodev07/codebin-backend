@@ -1,6 +1,6 @@
 import { Context } from "hono";
 import { CreateSnippetBody } from "../schemas/create.schema";
-import { createSnippet, getSnippets } from "../../../shared/db/orm/snippets";
+import { createSnippet, getSnippets } from "@/db/orm/snippets";
 
 export const createSnippetService = async (c: Context) => {
   const { title, description, language, type, code } =

@@ -1,7 +1,7 @@
 import { Context } from "hono";
 import { ForgotPasswordBody } from "../schemas/forgot.schema";
-import { getUserByEmail, updateUser } from "../../../shared/db/orm/users";
-import { generateToken } from "../../../shared/utils/jwt/create";
+import { getUserByEmail, updateUser } from "@/db/orm/users";
+import { generateToken } from "@/utils/jwt/create";
 
 export const forgotPassword = async (c: Context) => {
   const { email } = await c.req.json<ForgotPasswordBody>();

@@ -1,9 +1,9 @@
 import { Context } from "hono";
 import { setCookie } from "hono/cookie";
 import { RegisterBody } from "../schemas/register.schema";
-import { compare } from "../../../shared/utils/bcrypt/compare";
-import { getUserByUsername, updateUser } from "../../../shared/db/orm/users";
-import { generateToken } from "../../../shared/utils/jwt/create";
+import { compare } from "@/utils/bcrypt/compare";
+import { getUserByUsername, updateUser } from "@/db/orm/users";
+import { generateToken } from "@/utils/jwt/create";
 
 export const login = async (c: Context) => {
   const { username, password } = await c.req.json<RegisterBody>();

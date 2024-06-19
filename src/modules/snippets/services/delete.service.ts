@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { deleteSnippet, getSnippet } from "../../../shared/db/orm/snippets";
+import { deleteSnippet, getSnippet } from "@/db/orm/snippets";
 
 export const deleteSnippetService = async (c: Context) => {
   const { id } = c.req.param();
