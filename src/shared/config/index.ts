@@ -7,3 +7,10 @@ export const databaseConfig = {
   password: process.env.DATABASE_PASSWORD,
   port: Number(process.env.DATABASE_PORT),
 };
+
+export const corsConfig = {
+  origin: "http://localhost:5173",
+  allowHeaders: ["Access-Control-Allow-Origin", "Content-Type"],
+  allowMethods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
