@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import { serve } from "@hono/node-server";
 import { bootstrapApplication } from "./shared/utils/bootstrap";
 import { success } from "kittylog";
