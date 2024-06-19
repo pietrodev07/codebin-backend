@@ -33,4 +33,8 @@ export const routes: RoutesData = {
     method: "GET",
     path: "/me",
   },
+  logout: {
+    method: "GET",
+    path: "/logout",
+  },
 };

@@ -1,5 +1,6 @@
 import { forgotPassword } from "../services/forgot.service";
 import { login } from "../services/login.service";
+import { logout } from "../services/logout.service";
 import { me } from "../services/me.service";
 import { register } from "../services/register.service";
 import { resetPassword } from "../services/reset.service";
@@ -12,4 +13,5 @@ export const authController = {
   forgotPassword,
   resetPassword,
   me,
+  logout,
 };
