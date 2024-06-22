@@ -18,6 +18,15 @@ export const getSnippet = async (userId: string, snippetId: string) => {
     .executeTakeFirst();
 };
 
+export const getPublicSnippet = async (snippetId: string) => {
+  return await db
+    .selectFrom("snippets")
+    .where("type", "=", "public")
+    .where("id", "=", snippetId)
+    .selectAll()
+    .executeTakeFirst();
+};
+
 export const createSnippet = async (snippet: NewSnippet) => {
   return await db
     .insertInto("snippets")
