@@ -12,7 +12,7 @@ export const bootstrapApplication = () => {
 
   app.use("/auth/me", authMiddleware);
   app.use("/auth/logout", authMiddleware);
-  app.use("/snippets/*", authMiddleware);
+  app.use("/snippets/private/*", authMiddleware);
 
   app.route("/auth", authRoutes);
   app.route("/snippets", snippetsRoutes);
