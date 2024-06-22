@@ -4,25 +4,29 @@ import { updateSnippetBodySchema } from "../schemas/update.schema";
 
 export const routes: RoutesData = {
   createSnippetService: {
-    path: "/",
+    path: "/private",
     method: "POST",
     validator: createSnippetBodySchema,
   },
   updateSnippetService: {
-    path: "/:id",
+    path: "/private/:id",
     method: "PUT",
     validator: updateSnippetBodySchema,
   },
   deleteSnippetService: {
-    path: "/:id",
+    path: "/private/:id",
     method: "DELETE",
   },
   getSnippetsService: {
-    path: "/",
+    path: "/private",
     method: "GET",
   },
   getSnippetService: {
-    path: "/:id",
+    path: "/private/:id",
+    method: "GET",
+  },
+  getPublicSnippetService: {
+    path: "/public/:id",
     method: "GET",
   },
 };
