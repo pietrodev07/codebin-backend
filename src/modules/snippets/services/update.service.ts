@@ -26,7 +26,7 @@ export const updateSnippetService = async (c: Context) => {
   });
 
   return c.json({
-    success: false,
+    success: true,
     message: `Snippet ${updatedSnippet?.title} updated successfully!`,
   });
 };
