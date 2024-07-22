@@ -5,13 +5,13 @@ import { EmailOptions } from "@/types/*";
 import { BASE_FRONTEND_URL } from "@/config/*";
 
 const transporter = createTransport({
-  host: process.env.HOST,
-  service: process.env.SERVICE,
-  port: Number(process.env.PORT),
-  secure: Boolean(process.env.SECURE),
+  host: process.env.EMAIL_HOST,
+  service: process.env.EMAIL_SERVICE,
+  port: process.env.EMAIL_PORT,
+  secure: process.env.EMAIL_SECURE,
   auth: {
-    user: process.env.USER,
-    pass: process.env.PASS,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
@@ -26,7 +26,7 @@ const mailGenerator = new Mailgen({
 export const sendEmail = async (options: EmailOptions) => {
   try {
     await transporter.sendMail({
-      from: "pietro.dev.07@gmail.com",
+      from: process.env.EMAIL_USER,
       to: options.to,
       subject: options.subject,
       html: options.text,
@@ -110,7 +110,7 @@ export const contactEmail = async (
 
   await sendEmail({
     subject: "Email from codebin",
-    to: "pietro.dev.07@gmail.com",
+    to: process.env.EMAIL_USER,
     text: mailGenerator.generate(emailBody),
   });
 };
