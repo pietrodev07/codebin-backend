@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { prettyJSON } from "hono/pretty-json";
 
 import { corsConfig } from "@/config/*";
 import { authRouter } from "@/auth/routes/auth.routes";
@@ -11,7 +12,7 @@ import { snippetsRouter } from "@/snippets/routes/snippets.routes";
 export const bootstrapApplication = () => {
   const app = new Hono();
 
-  app.use(cors(corsConfig), brief(app));
+  app.use(cors(corsConfig), brief(app), prettyJSON());
 
   app.use("auth/me", authMiddleware);
   app.use("auth/logout", authMiddleware);
