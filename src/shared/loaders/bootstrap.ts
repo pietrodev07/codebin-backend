@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import { corsConfig } from "@/config/*";
 import { authRouter } from "@/auth/routes/auth.routes";
 import { brief } from "@/middlewares/brief.middleware";
+import { utilsRouter } from "@/mutils/routes/utils.routes";
 import { authMiddleware } from "@/middlewares/auth.middleware";
 import { snippetsRouter } from "@/snippets/routes/snippets.routes";
 
@@ -18,6 +19,7 @@ export const bootstrapApplication = () => {
 
   app.route("/auth", authRouter);
   app.route("/snippets", snippetsRouter);
+  app.route("/utils", utilsRouter);
 
   app.onError((_, c) => {
     return c.json({ success: false, message: "Internal Server Error" });
