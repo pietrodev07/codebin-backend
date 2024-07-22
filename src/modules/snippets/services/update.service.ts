@@ -1,6 +1,6 @@
 import { Context } from "hono";
-import { UpdateSnippetBody } from "../schemas/update.schema";
 import { snippets } from "@/db/orm";
+import { UpdateSnippetBody } from "../schemas/update.schema";
 
 export const editSnippet = async (c: Context) => {
   const snippetBody = await c.req.json<UpdateSnippetBody>();

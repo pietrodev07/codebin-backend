@@ -1,7 +1,8 @@
+import { Context } from "hono";
+
 import { users } from "@/db/orm";
 import { generateToken } from "@/utils/jwt";
 import { resetPasswordEmail, verifyAccountEmail } from "@/utils/mailer";
-import { Context } from "hono";
 
 export const forgotPassword = async (c: Context) => {
   const { email } = await c.req.json();

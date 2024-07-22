@@ -1,8 +1,9 @@
 import { Context } from "hono";
+
 import { users } from "@/db/orm";
-import { handleTokenErrors, verifyToken } from "@/utils/jwt";
-import { ResetPasswordBody } from "../schemas/reset.schema";
 import { hash } from "@/utils/bcrypt";
+import { ResetPasswordBody } from "../schemas/reset.schema";
+import { handleTokenErrors, verifyToken } from "@/utils/jwt";
 
 export const resetPassword = async (c: Context) => {
   const { email, token } = c.req.query();

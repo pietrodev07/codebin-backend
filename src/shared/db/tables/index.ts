@@ -1,5 +1,5 @@
-import { SnippetsTable } from "./snippets.table";
 import { UsersTable } from "./users.table";
+import { SnippetsTable } from "./snippets.table";
 
 export interface Database {
   users: UsersTable;

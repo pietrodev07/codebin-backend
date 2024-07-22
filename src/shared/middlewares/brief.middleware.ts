@@ -1,5 +1,5 @@
-import { createMiddleware } from "hono/factory";
 import { HonoBase } from "hono/hono-base";
+import { createMiddleware } from "hono/factory";
 
 const INFO_COLOR = "\x1b[36m";
 const RESET_COLOR = "\x1b[0m";

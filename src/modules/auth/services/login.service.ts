@@ -1,11 +1,11 @@
 import { Context } from "hono";
+import { setCookie } from "hono/cookie";
 
 import { users } from "@/db/orm";
 import { compare } from "@/utils/bcrypt";
 import { generateToken } from "@/utils/jwt";
-import { RegisterBody } from "../schemas/register.schema";
-import { setCookie } from "hono/cookie";
 import { verifyAccountEmail } from "@/utils/mailer";
+import { RegisterBody } from "../schemas/register.schema";
 
 export const login = async (c: Context) => {
   const { username, password } = await c.req.json<RegisterBody>();

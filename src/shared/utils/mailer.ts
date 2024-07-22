@@ -1,8 +1,8 @@
-import { createTransport } from "nodemailer";
 import Mailgen from "mailgen";
+import { createTransport } from "nodemailer";
 
+import { EmailOptions } from "@/types/*";
 import { BASE_FRONTEND_URL } from "@/config/*";
-import { EmailOptions } from "@/types/index";
 
 const transporter = createTransport({
   host: process.env.HOST,

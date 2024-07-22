@@ -17,7 +17,7 @@
       "@/db/*": ["./src/shared/db/*"],
       "@/middlewares/*": ["./src/shared/middlewares/*"],
       "@/loaders/*": ["./src/shared/loaders/*"],
-      "@/types/*": ["./src/shared/types/*"],
+      "@/types/*": ["./src/shared/types"],
       "@/config/*": ["./src/shared/config"]
     }
   },

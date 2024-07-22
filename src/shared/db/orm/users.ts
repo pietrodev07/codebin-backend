@@ -1,4 +1,4 @@
-import { db } from "@/db/db";
+import { db } from "../db";
 import { NewUser, UserUpdate } from "@/db/tables";
 
 type Key = "id" | "username" | "email";
