@@ -1,32 +1,27 @@
 import { Context } from "hono";
+
+import { snippets } from "@/db/orm";
 import { CreateSnippetBody } from "../schemas/create.schema";
-import { createSnippet, getSnippets } from "@/db/orm/snippets";
 
-export const createSnippetService = async (c: Context) => {
-  const { title, description, language, type, code } =
-    await c.req.json<CreateSnippetBody>();
-
+export const createSnippet = async (c: Context) => {
+  const snippetBody = await c.req.json<CreateSnippetBody>();
   const user = c.get("user_data");
-  const getUserSnippets = await getSnippets(user.id);
 
+  const getUserSnippets = await snippets.getAll(user.id);
   if (getUserSnippets.length > 20) {
     return c.json({
       success: false,
-      message: "You can create maxium 20 snippets with the free account",
+      message: "You can create maximum 20 snippets with the free account",
     });
   }
 
-  const newSnippet = await createSnippet({
-    title,
-    description,
-    language,
-    code,
-    type,
+  await snippets.create({
+    ...snippetBody,
     userId: user.id,
   });
 
   return c.json({
     success: true,
-    message: `Snippet ${newSnippet?.title} created successfully!`,
+    message: "Snippet created successfully!",
   });
 };

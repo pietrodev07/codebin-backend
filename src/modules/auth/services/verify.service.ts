@@ -1,7 +1,7 @@
 import { Context } from "hono";
-import { JwtTokenExpired, JwtTokenInvalid } from "hono/utils/jwt/types";
-import { verifyToken } from "@/utils/jwt/verify";
-import { getUserByEmail, updateUser } from "@/db/orm/users";
+
+import { users } from "@/db/orm";
+import { handleTokenErrors, verifyToken } from "@/utils/jwt";
 
 export const verifyAccount = async (c: Context) => {
   const { email, token } = c.req.query();
@@ -12,41 +12,36 @@ export const verifyAccount = async (c: Context) => {
     if (decoded.email != email) {
       return c.json({
         success: false,
-        message: "The token/email given, is invalid!",
+        message: "The token/email given is invalid!",
       });
     }
 
-    const fetchedUser = await getUserByEmail(decoded.email as string);
+    const fetchedUser = await users.get("email", email);
     if (!fetchedUser) {
       return c.json({
         success: false,
-        message: "The token/email given, is invalid!",
+        message: "The token/email given is invalid!",
       });
     }
 
     if (token != fetchedUser.currentVerifyToken) {
       return c.json({
         success: false,
-        message: "The token/email given, is invalid!",
+        message: "The token/email given is invalid!",
       });
     }
 
-    await updateUser(fetchedUser?.id!, {
+    await users.edit(fetchedUser.id, {
       verified: true,
       currentVerifyToken: "",
     });
 
     return c.json({
-      success: false,
+      success: true,
       message: "Account verified successfully!",
     });
   } catch (err) {
-    if (err instanceof JwtTokenExpired) {
-      return c.json({ success: false, message: "The token is expired!" });
-    }
-
-    if (err instanceof JwtTokenInvalid) {
-      return c.json({ success: false, message: "The token is invalid!" });
-    }
+    const errorResponse = handleTokenErrors(err);
+    return c.json(errorResponse);
   }
 };

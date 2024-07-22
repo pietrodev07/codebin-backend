@@ -23,6 +23,7 @@
     "@types/pg": "^8.11.6",
     "dotenv": "^16.4.5",
     "husky": "^9.0.11",
+    "mailgen": "^2.0.28",
     "prettier": "^3.3.2",
     "tsx": "^4.15.6",
     "typescript": "^5.4.5"

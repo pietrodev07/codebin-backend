@@ -2,8 +2,9 @@ import * as path from "path";
 import { promises as fs } from "fs";
 import { error, success } from "kittylog";
 import { Migrator, FileMigrationProvider } from "kysely";
+
 import { db } from "./db";
-import { migrationFolder } from "../config";
+import { migrationFolder } from "@/config/*";
 
 export async function migrateToLatest() {
   const migrator = new Migrator({

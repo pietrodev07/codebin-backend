@@ -1,8 +1,8 @@
-import { RoutesData } from "@/types/index";
-import { forgotPasswordBodySchema } from "../schemas/forgot.schema";
+import { RoutesData } from "@/types/*";
 import { loginBodySchema } from "../schemas/login.schema";
 import { registerBodySchema } from "../schemas/register.schema";
 import { resetPasswordBodySchema } from "../schemas/reset.schema";
+import { forgotPasswordBodySchema } from "../schemas/forgot.schema";
 
 export const routes: RoutesData = {
   register: {

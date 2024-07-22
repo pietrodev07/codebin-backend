@@ -12,9 +12,11 @@
     "paths": {
       "@/auth/*": ["./src/modules/auth/*"],
       "@/snippets/*": ["./src/modules/snippets/*"],
+      "@/mutils/*": ["./src/modules/utils/*"],
       "@/utils/*": ["./src/shared/utils/*"],
       "@/db/*": ["./src/shared/db/*"],
       "@/middlewares/*": ["./src/shared/middlewares/*"],
+      "@/loaders/*": ["./src/shared/loaders/*"],
       "@/types/*": ["./src/shared/types/*"],
       "@/config/*": ["./src/shared/config"]
     }

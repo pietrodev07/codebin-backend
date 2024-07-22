@@ -1,4 +1,5 @@
 import { Kysely, sql } from "kysely";
+
 import { Database } from "../tables";
 
 export const up = async (db: Kysely<Database>) => {

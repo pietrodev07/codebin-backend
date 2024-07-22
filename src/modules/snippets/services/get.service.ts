@@ -1,21 +1,21 @@
 import { Context } from "hono";
-import { getSnippet } from "@/db/orm/snippets";
+import { snippets } from "@/db/orm";
 
-export const getSnippetService = async (c: Context) => {
+export const getPrivateSnippet = async (c: Context) => {
   const user = c.get("user_data");
   const { id } = c.req.param();
 
-  const fetchedSnippet = await getSnippet(user.id, id);
+  const fetchedSnippet = await snippets.get(id, user.id);
   if (!fetchedSnippet) {
     return c.json({
       success: false,
-      message: "Snippet given not exist!",
+      message: "Snippet with given id does not exist!",
     });
   }
 
   return c.json({
     success: true,
-    message: `Snippet ${fetchedSnippet?.title} fetched successfully!`,
+    message: "Snippet fetched successfully!",
     data: fetchedSnippet,
   });
 };

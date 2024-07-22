@@ -6,6 +6,6 @@ export const logout = (c: Context) => {
 
   return c.json({
     success: true,
-    message: "Logout completed successfully",
+    message: "Logout completed successfully!",
   });
 };

@@ -1,19 +1,20 @@
 import "dotenv/config";
 
-import { serve } from "@hono/node-server";
-import { bootstrapApplication } from "@/utils/bootstrap";
 import { success } from "kittylog";
+import { serve } from "@hono/node-server";
+
 import { migrateToLatest } from "@/db/migrate";
+import { bootstrapApplication } from "@/loaders/bootstrap";
 
 const app = bootstrapApplication();
 
 const serverConfig = {
   fetch: app.fetch,
-  port: 8000,
+  port: process.env.SERVER_PORT,
 };
 
 migrateToLatest();
 
 serve(serverConfig, ({ address, port }) => {
-  success(`Server running at <${address}> on the <${port}> port`);
+  success(`Server running on ${address} into ${port} port`);
 });

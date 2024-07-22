@@ -1,32 +1,32 @@
-import { RoutesData } from "@/types/index";
+import { RoutesData } from "@/types/*";
 import { createSnippetBodySchema } from "../schemas/create.schema";
 import { updateSnippetBodySchema } from "../schemas/update.schema";
 
 export const routes: RoutesData = {
-  createSnippetService: {
+  createSnippet: {
     path: "/private",
     method: "POST",
     validator: createSnippetBodySchema,
   },
-  updateSnippetService: {
+  editSnippet: {
     path: "/private/:id",
     method: "PUT",
     validator: updateSnippetBodySchema,
   },
-  deleteSnippetService: {
+  deleteSnippet: {
     path: "/private/:id",
     method: "DELETE",
   },
-  getSnippetsService: {
+  getSnippets: {
     path: "/private",
     method: "GET",
   },
-  getSnippetService: {
+  getPrivateSnippet: {
     path: "/private/:id",
     method: "GET",
   },
-  getPublicSnippetService: {
-    path: "/public/:id",
+  getPublicSnippet: {
+    path: "/:id",
     method: "GET",
   },
 };

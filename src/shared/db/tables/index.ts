@@ -6,5 +6,5 @@ export interface Database {
   snippets: SnippetsTable;
 }
 
-export { User, UserUpdate, NewUser } from "./users.table";
-export { Snippet, SnippetUpdate, NewSnippet } from "./snippets.table";
+export * from "./users.table";
+export * from "./snippets.table";

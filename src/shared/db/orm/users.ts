@@ -1,31 +1,17 @@
-import { db } from "../db";
-import { NewUser, UserUpdate } from "../tables";
+import { db } from "@/db/db";
+import { NewUser, UserUpdate } from "@/db/tables";
 
-export const getUserById = async (id: string) => {
+type Key = "id" | "username" | "email";
+
+export const get = async (key: Key, value: string) => {
   return await db
     .selectFrom("users")
-    .where("id", "=", id)
+    .where(key, "=", value)
     .selectAll()
     .executeTakeFirst();
 };
 
-export const getUserByEmail = async (email: string) => {
-  return await db
-    .selectFrom("users")
-    .where("email", "=", email)
-    .selectAll()
-    .executeTakeFirst();
-};
-
-export const getUserByUsername = async (username: string) => {
-  return await db
-    .selectFrom("users")
-    .where("username", "=", username)
-    .selectAll()
-    .executeTakeFirst();
-};
-
-export const createUser = async (user: NewUser) => {
+export const create = async (user: NewUser) => {
   return await db
     .insertInto("users")
     .values(user)
@@ -33,11 +19,16 @@ export const createUser = async (user: NewUser) => {
     .executeTakeFirst();
 };
 
-export const updateUser = async (id: string, user: UserUpdate) => {
-  return await db.updateTable("users").set(user).where("id", "=", id).execute();
+export const edit = async (id: string, user: UserUpdate) => {
+  return await db
+    .updateTable("users")
+    .set(user)
+    .where("id", "=", id)
+    .returningAll()
+    .executeTakeFirst();
 };
 
-export const deleteUser = async (id: string) => {
+export const remove = async (id: string) => {
   return await db
     .deleteFrom("users")
     .where("id", "=", id)

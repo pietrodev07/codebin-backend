@@ -1,8 +1,8 @@
 import { Context, Next } from "hono";
-import { JwtTokenExpired, JwtTokenInvalid } from "hono/utils/jwt/types";
 import { getCookie } from "hono/cookie";
-import { verifyToken } from "../utils/jwt/verify";
-import { getUserByUsername } from "@/db/orm/users";
+
+import { users } from "@/db/orm";
+import { handleTokenErrors, verifyToken } from "@/utils/jwt";
 
 export const authMiddleware = async (c: Context, next: Next) => {
   const token = getCookie(c, "access_token");
@@ -11,16 +11,17 @@ export const authMiddleware = async (c: Context, next: Next) => {
     if (!token) {
       return c.json({
         success: false,
-        message: "The token given, is invalid!",
+        message: "Not authorized!",
       });
     }
 
     const decoded = await verifyToken(token);
-    const fetchedUser = await getUserByUsername(decoded.username as string);
+
+    const fetchedUser = await users.get("username", decoded.username as string);
     if (!fetchedUser) {
       return c.json({
         success: false,
-        message: "The token given, is invalid!",
+        message: "Not authorized!",
       });
     }
 
@@ -30,14 +31,9 @@ export const authMiddleware = async (c: Context, next: Next) => {
       username: fetchedUser?.username,
     });
 
-    return await next();
+    await next();
   } catch (err) {
-    if (err instanceof JwtTokenExpired) {
-      return c.json({ success: false, message: "The token is expired!" });
-    }
-
-    if (err instanceof JwtTokenInvalid) {
-      return c.json({ success: false, message: "The token is invalid!" });
-    }
+    const errorResponse = handleTokenErrors(err);
+    return c.json(errorResponse);
   }
 };

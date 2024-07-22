@@ -1,7 +1,7 @@
 import { db } from "../db";
 import { NewSnippet, SnippetUpdate } from "../tables";
 
-export const getSnippets = async (userId: string) => {
+export const getAll = async (userId: string) => {
   return await db
     .selectFrom("snippets")
     .where("userId", "=", userId)
@@ -9,25 +9,22 @@ export const getSnippets = async (userId: string) => {
     .execute();
 };
 
-export const getSnippet = async (userId: string, snippetId: string) => {
-  return await db
-    .selectFrom("snippets")
-    .where("userId", "=", userId)
+export const get = async (snippetId: string, userId?: string) => {
+  let baseQuery = db.selectFrom("snippets");
+
+  if (userId) {
+    baseQuery = baseQuery.where("userId", "=", userId);
+  } else {
+    baseQuery = baseQuery.where("type", "=", "public");
+  }
+
+  return await baseQuery
     .where("id", "=", snippetId)
     .selectAll()
     .executeTakeFirst();
 };
 
-export const getPublicSnippet = async (snippetId: string) => {
-  return await db
-    .selectFrom("snippets")
-    .where("type", "=", "public")
-    .where("id", "=", snippetId)
-    .selectAll()
-    .executeTakeFirst();
-};
-
-export const createSnippet = async (snippet: NewSnippet) => {
+export const create = async (snippet: NewSnippet) => {
   return await db
     .insertInto("snippets")
     .values(snippet)
@@ -35,7 +32,7 @@ export const createSnippet = async (snippet: NewSnippet) => {
     .executeTakeFirst();
 };
 
-export const updateSnippet = async (
+export const edit = async (
   userId: string,
   snippetId: string,
   snippet: SnippetUpdate
@@ -49,11 +46,11 @@ export const updateSnippet = async (
     .executeTakeFirst();
 };
 
-export const deleteSnippet = async (userId: string, id: string) => {
+export const remove = async (userId: string, snippetId: string) => {
   return await db
     .deleteFrom("snippets")
     .where("userId", "=", userId)
-    .where("id", "=", id)
+    .where("id", "=", snippetId)
     .returningAll()
     .executeTakeFirst();
 };

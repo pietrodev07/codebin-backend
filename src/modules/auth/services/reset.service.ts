@@ -1,10 +1,8 @@
 import { Context } from "hono";
-import { JwtTokenExpired, JwtTokenInvalid } from "hono/utils/jwt/types";
+import { users } from "@/db/orm";
+import { handleTokenErrors, verifyToken } from "@/utils/jwt";
 import { ResetPasswordBody } from "../schemas/reset.schema";
-import { verifyToken } from "@/utils/jwt/verify";
-import { getUserByEmail, updateUser } from "@/db/orm/users";
-import { compare } from "@/utils/bcrypt/compare";
-import { hash } from "@/utils/bcrypt/hash";
+import { hash } from "@/utils/bcrypt";
 
 export const resetPassword = async (c: Context) => {
   const { email, token } = c.req.query();
@@ -16,34 +14,26 @@ export const resetPassword = async (c: Context) => {
     if (decoded.email != email) {
       return c.json({
         success: false,
-        message: "The token/email given, is invalid!",
+        message: "The token/email given is invalid!",
       });
     }
 
-    const fetchedUser = await getUserByEmail(decoded.email as string);
+    const fetchedUser = await users.get("email", email);
     if (!fetchedUser) {
       return c.json({
         success: false,
-        message: "The token/email given, is invalid!",
+        message: "The token/email given is invalid!",
       });
     }
 
     if (token != fetchedUser.currentResetToken) {
       return c.json({
         success: false,
-        message: "The token/email given, is invalid!",
+        message: "The token/email given is invalid!",
       });
     }
 
-    const passwordMatch = compare(fetchedUser?.password!, password);
-    if (passwordMatch) {
-      return c.json({
-        success: false,
-        message: "The new password given, is the same of the old password!",
-      });
-    }
-
-    await updateUser(fetchedUser?.id!, {
+    await users.edit(fetchedUser.id, {
       password: hash(password),
       currentResetToken: "",
     });
@@ -53,12 +43,7 @@ export const resetPassword = async (c: Context) => {
       message: "Password resetted successfully!",
     });
   } catch (err) {
-    if (err instanceof JwtTokenExpired) {
-      return c.json({ success: false, message: "The token is expired!" });
-    }
-
-    if (err instanceof JwtTokenInvalid) {
-      return c.json({ success: false, message: "The token is invalid!" });
-    }
+    const errorResponse = handleTokenErrors(err);
+    return c.json(errorResponse);
   }
 };
